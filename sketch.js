@@ -57,7 +57,7 @@ const planets = {
 let selectA, selectB, skipInput;
 
 let isMoving = false;
-let skip = 1
+let skip = 2
 
 let canvasSize = 600; // Adjust based on available space
 
@@ -77,7 +77,7 @@ function setup() {
   selectA.changed(resetCanvas)
   selectB.changed(resetCanvas)
   
-  skipInput = createInput("1", "number")
+  skipInput = createInput("2", "number")
   
   let p2 = createP('after you selected the planets, press start');
   let pausePlayButton = createButton("start/stop");
