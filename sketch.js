@@ -65,9 +65,11 @@ let canvasSize = 600; // Adjust based on available space
 function setup() {
   createCanvas(canvasSize, canvasSize);
   
-  let p = createP('Select the planets and a skip value (in case you need less lines).');
-  selectA = createSelect();
-  selectB = createSelect();
+  let div1 = createDiv().class("section");
+  createP('Select the planets and a skip value (in case you need less lines).').parent(div1);
+  
+  selectA = createSelect().class("spaced-button").parent(div1);
+  selectB = createSelect().class("spaced-button").parent(div1);
   
   for (let planet in planets) {
     selectA.option(planet);
@@ -75,24 +77,32 @@ function setup() {
   }
   selectA.selected('earth');
   selectB.selected('venus');
-  selectA.changed(resetCanvas)
-  selectB.changed(resetCanvas)
+  selectA.changed(resetCanvas);
+  selectB.changed(resetCanvas);
   
-  skipInput = createInput("1", "number")
-  let showPlanetsButton = createButton("Toggle show planets")
-  showPlanetsButton.mousePressed(()=>{showPlanets = !showPlanets});
+  skipInput = createInput("1", "number").class("spaced-button").parent(div1);
   
-  let p2 = createP('after you selected the planets, press start');
-  let pausePlayButton = createButton("start/stop");
-  pausePlayButton.mousePressed(()=>{isMoving = !isMoving});
+  // Create buttons inside divs for spacing
+  let showPlanetsButton = createButton("Toggle show planets").class("spaced-button").parent(div1);
+  showPlanetsButton.mousePressed(() => { showPlanets = !showPlanets });
+
+  let div2 = createDiv().class("section");
+  createP('After you selected the planets, press start').parent(div2);
   
-  let resetButton = createButton("Clear");
+  let pausePlayButton = createButton("Start/Stop").class("spaced-button").parent(div2);
+  pausePlayButton.mousePressed(() => { isMoving = !isMoving });
+
+  let resetButton = createButton("Clear").class("spaced-button").parent(div2);
   resetButton.mousePressed(resetCanvas);
+
+  let div3 = createDiv().class("section");
+  createP('If you like how it looks, you can save it!').parent(div3);
   
-  let p3 = createP('if you like how it looks you can save it!');
-  let saveButton = createButton("save");
+  let saveButton = createButton("Save").parent(div3);
   saveButton.mousePressed(savePlanets);
 }
+
+
 
 function draw() {
   let planetA = planets[selectA.selected()];
