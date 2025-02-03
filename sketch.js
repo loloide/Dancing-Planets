@@ -57,7 +57,8 @@ const planets = {
 let selectA, selectB, skipInput;
 
 let isMoving = false;
-let skip = 2
+let showPlanets = false;
+let skip = 1
 
 let canvasSize = 600; // Adjust based on available space
 
@@ -77,14 +78,17 @@ function setup() {
   selectA.changed(resetCanvas)
   selectB.changed(resetCanvas)
   
-  skipInput = createInput("2", "number")
+  skipInput = createInput("1", "number")
+  let showPlanetsButton = createButton("Toggle show planets")
+  showPlanetsButton.mousePressed(()=>{showPlanets = !showPlanets});
   
   let p2 = createP('after you selected the planets, press start');
   let pausePlayButton = createButton("start/stop");
   pausePlayButton.mousePressed(()=>{isMoving = !isMoving});
+  
   let resetButton = createButton("Clear");
   resetButton.mousePressed(resetCanvas);
-
+  
   let p3 = createP('if you like how it looks you can save it!');
   let saveButton = createButton("save");
   saveButton.mousePressed(savePlanets);
@@ -95,12 +99,11 @@ function draw() {
   let planetB = planets[selectB.selected()];
   skip = skipInput.value() 
   
-  translate(width / 2, height / 2); // Center the canvas
+  translate(width / 2, height / 2); 
 
-  // **Find the largest radius among selected planets**
   let maxRadius = Math.max(planetA.radius, planetB.radius);
-  let maxDisplaySize = canvasSize * 0.45; // Fixed max size on canvas
-  let a = maxDisplaySize / maxRadius; // Scale everything relative to maxRadius
+  let maxDisplaySize = canvasSize * 0.45; 
+  let a = maxDisplaySize / maxRadius; 
 
   let maxPeriod = Math.max(planetA.radius, planetB.radius);
   let speed = 25/maxPeriod
@@ -108,24 +111,24 @@ function draw() {
   noFill();
   stroke(0);
 
-  // **Draw orbits** (scaled proportionally)
   ellipse(0, 0, planetA.radius * 2 * a);
   ellipse(0, 0, planetB.radius * 2 * a);
 
-  // **Calculate planet positions**
   let planetAX = planetA.radius * a * cos(planetA.angle);
   let planetAY = planetA.radius * a * sin(planetA.angle);
   let planetBX = planetB.radius * a * cos(planetB.angle);
   let planetBY = planetB.radius * a * sin(planetB.angle);
 
-  // **Draw planets**
-  fill(50, 100, 200);
-  noStroke();
-  //ellipse(planetAX, planetAY, 10);
+  if (showPlanets) {
+    fill("#ff5d00");
+    noStroke();
+    ellipse(planetAX, planetAY, 10);
 
-  fill(255, 165, 0);
-  noStroke();
-  //ellipse(planetBX, planetBY, 10);
+    fill("#0065ff");
+    noStroke();
+    ellipse(planetBX, planetBY, 10);
+  }
+  
 
   // **Update movement if enabled**
   if (isMoving) {
