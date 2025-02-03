@@ -82,14 +82,12 @@ function setup() {
   let p2 = createP('after you selected the planets, press start');
   let pausePlayButton = createButton("start/stop");
   pausePlayButton.mousePressed(()=>{isMoving = !isMoving});
-  
   let resetButton = createButton("Clear");
   resetButton.mousePressed(resetCanvas);
 
-  
-  
+  let p3 = createP('if you like how it looks you can save it!');
   let saveButton = createButton("save");
-  resetButton.mousePressed(savePlanets);
+  saveButton.mousePressed(savePlanets);
 }
 
 function draw() {
