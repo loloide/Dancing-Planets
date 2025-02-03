@@ -1,23 +1,32 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 canvas {
-  display: block;
+    display: block;
 }
 
 .section {
-  text-align: center;
+    text-align: center;
+}
+.spaced-button {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
-.spaced-button {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-right: 5px;
-  margin-left: 5px;
+#credit {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
 }
