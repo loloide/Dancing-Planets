@@ -10,3 +10,14 @@ html, body {
 canvas {
   display: block;
 }
+
+.section {
+  text-align: center;
+}
+
+.spaced-button {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
